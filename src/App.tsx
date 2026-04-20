@@ -40,7 +40,7 @@ export default function App() {
         {state.status === 'success' && (
           <div className="space-y-4">
             <div className="bg-green-500/20 border border-green-400/30 rounded-xl p-4">
-              <p className="text-green-200 text-sm font-medium mb-1">Message</p>
+              <p className="text-green-200 text-sm font-medium mb-1">Message (deployed)</p>
               <p className="text-white font-mono text-sm break-all">{state.data.message}</p>
             </div>
             <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4">
