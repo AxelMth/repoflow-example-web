@@ -15,8 +15,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       repoflow-example-shared:
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.2.0
+        version: 0.2.0
     devDependencies:
       '@eslint/js':
         specifier: ^9.17.0
@@ -1435,8 +1435,8 @@ packages:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
 
-  repoflow-example-shared@0.1.0:
-    resolution: {integrity: sha512-5k0SOxoU7WXrBK3+a7ZEhLECLbbE94NSQCfsePbBz/cJX/NMuh88AGdCcAtWRxc592ckoArg5nQdyXElxEwWPw==}
+  repoflow-example-shared@0.2.0:
+    resolution: {integrity: sha512-Tw/O+l1lM+MOaO7P3Mp1EPcxYqtVoiAJy3KcNb40YYtH5hZB/Ced8Ja/GVuplt5FOOrzjHaRkwxHCkGZXwBlmw==}
     peerDependencies:
       zod: ^3.23.8
     peerDependenciesMeta:
@@ -2968,7 +2968,7 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  repoflow-example-shared@0.1.0: {}
+  repoflow-example-shared@0.2.0: {}
 
   resolve-from@4.0.0: {}
 
