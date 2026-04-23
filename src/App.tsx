@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { HelloResponse, StatsResponse } from '@repoflow-example/shared'
+import type { HelloResponse, StatsResponse } from 'repoflow-example-shared'
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001'
 
