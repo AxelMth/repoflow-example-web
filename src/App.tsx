@@ -1,23 +1,28 @@
 import { useEffect, useState } from 'react'
-import type { HelloResponse } from '@repoflow-example/shared'
+import type { HelloResponse, StatsResponse } from '@repoflow-example/shared'
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001'
 
 type State =
   | { status: 'loading' }
-  | { status: 'success'; data: HelloResponse }
+  | { status: 'success'; data: HelloResponse; stats: StatsResponse }
   | { status: 'error'; message: string }
 
 export default function App() {
   const [state, setState] = useState<State>({ status: 'loading' })
 
   useEffect(() => {
-    fetch(`${API_URL}/api/hello`)
-      .then((res) => {
+    Promise.all([
+      fetch(`${API_URL}/api/hello`).then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         return res.json() as Promise<HelloResponse>
-      })
-      .then((data) => setState({ status: 'success', data }))
+      }),
+      fetch(`${API_URL}/api/stats`).then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        return res.json() as Promise<StatsResponse>
+      }),
+    ])
+      .then(([data, stats]) => setState({ status: 'success', data, stats }))
       .catch((err: unknown) =>
         setState({ status: 'error', message: err instanceof Error ? err.message : 'Unknown error' }),
       )
@@ -46,6 +51,23 @@ export default function App() {
             <div className="bg-blue-500/20 border border-blue-400/30 rounded-xl p-4">
               <p className="text-blue-200 text-sm font-medium mb-1">Timestamp</p>
               <p className="text-white font-mono text-sm">{state.data.timestamp}</p>
+            </div>
+            <div className="bg-purple-500/20 border border-purple-400/30 rounded-xl p-4 space-y-2">
+              <p className="text-purple-200 text-sm font-medium">Server stats</p>
+              <div className="grid grid-cols-3 gap-2 text-center">
+                <div>
+                  <p className="text-purple-300 text-xs">uptime</p>
+                  <p className="text-white font-mono text-sm">{state.stats.uptime.toFixed(1)}s</p>
+                </div>
+                <div>
+                  <p className="text-purple-300 text-xs">version</p>
+                  <p className="text-white font-mono text-sm">{state.stats.version}</p>
+                </div>
+                <div>
+                  <p className="text-purple-300 text-xs">node</p>
+                  <p className="text-white font-mono text-sm">{state.stats.nodeVersion}</p>
+                </div>
+              </div>
             </div>
           </div>
         )}
